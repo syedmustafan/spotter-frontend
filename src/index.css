@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --spotter-bg: #1a2e35;
+  --spotter-bg-dark: #152428;
+  --spotter-bg-card: #1e3a42;
+  --spotter-border: #2d4a54;
+  --spotter-teal: #2dd4bf;
+  --spotter-coral: #f87171;
+  --spotter-gold: #fbbf24;
+  
+  --eld-off: #22c55e;
+  --eld-sleeper: #fbbf24;
+  --eld-driving: #2dd4bf;
+  --eld-on: #f87171;
+}
+
+body {
+  @apply text-white font-body antialiased;
+  background: linear-gradient(135deg, #1a2e35 0%, #152428 50%, #1a2e35 100%);
+  min-height: 100vh;
+}
+
+/* Animated background dots */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(45, 212, 191, 0.05) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(45, 212, 191, 0.03) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #152428;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full;
+  background: #2d4a54;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d5a64;
+}
+
+/* Leaflet customizations */
+.leaflet-container {
+  @apply rounded-xl;
+  background: #1a2e35;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.7) saturate(0.8) hue-rotate(10deg);
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e3a42;
+  color: #fff;
+  border: 1px solid #2d4a54;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet-popup-tip {
+  background: #1e3a42;
+}
+
+.leaflet-popup-content {
+  @apply text-sm;
+}
+
+/* Map marker animations */
+@keyframes pulse-marker {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.marker-pulse {
+  animation: pulse-marker 2s ease-in-out infinite;
+}
+
+/* Spotter style input */
+.spotter-input {
+  @apply w-full px-4 py-3 rounded-xl transition-all duration-200;
+  background: rgba(30, 58, 66, 0.5);
+  border: 1px solid #2d4a54;
+  color: #fff;
+}
+
+.spotter-input::placeholder {
+  color: #64748b;
+}
+
+.spotter-input:focus {
+  outline: none;
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2);
+}
+
+/* Spotter card */
+.spotter-card {
+  background: linear-gradient(180deg, rgba(30, 58, 66, 0.8) 0%, rgba(26, 48, 56, 0.8) 100%);
+  border: 1px solid #2d4a54;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.spotter-card:hover {
+  border-color: #3d5a64;
+}
+
+/* Gradient text like "Automation" */
+.gradient-text {
+  background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Spotter button */
+.spotter-btn {
+  @apply px-6 py-3 font-semibold rounded-xl transition-all duration-200;
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(248, 113, 113, 0.3);
+}
+
+.spotter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(248, 113, 113, 0.4);
+}
+
+.spotter-btn:disabled {
+  opacity: 0.6;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* Log sheet grid styling */
+.log-grid-line {
+  stroke: #2d4a54;
+  stroke-width: 0.5;
+}
+
+.log-grid-hour {
+  stroke: #3d5a64;
+  stroke-width: 1;
+}
+
+.log-duty-line {
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* Animation for results */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+
+/* Floating dots animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
