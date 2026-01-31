@@ -8,6 +8,9 @@ import { FileText, Map, ListChecks } from 'lucide-react';
 import type { TripResponse, TripInput } from './types';
 import axios from 'axios';
 
+// API Base URL - uses environment variable in production, proxy in development
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
 // Spotter Logo Component
 function SpotterLogo({ className = '' }: { className?: string }) {
   return (
@@ -33,7 +36,7 @@ function App() {
     setError(null);
     
     try {
-      const response = await axios.post<TripResponse>('/api/plan-trip/', input);
+      const response = await axios.post<TripResponse>(`${API_BASE_URL}/api/plan-trip/`, input);
       setTripData(response.data);
       setActiveTab('map');
     } catch (err) {
