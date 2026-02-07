@@ -2,6 +2,11 @@
 
 React + TypeScript frontend for the Spotter ELD Trip Planner application. A modern, responsive web application for planning HOS-compliant truck routes.
 
+## 🌐 Live Demo
+
+- **Frontend App**: https://frontend-two-hazel-29.vercel.app
+- **Backend API**: https://spotter-api-236488896419.us-central1.run.app
+
 ## 🚛 Features
 
 - **Trip Planning Form** - Simple 4-field input for trip details
@@ -10,13 +15,14 @@ React + TypeScript frontend for the Spotter ELD Trip Planner application. A mode
 - **ELD Log Sheets** - Visual SVG-based daily log sheets with continuous duty status line
 - **Trip Summary** - Distance, duration, stops, and cycle hours overview
 
-## 🎨 Screenshots
+## 🎨 Design
 
 The application features a modern dark theme inspired by Spotter.ai with:
 - Dark teal color scheme
 - Animated logo with red dots
 - Interactive map with teal route line
 - Color-coded ELD log graphs
+- Responsive design for mobile and desktop
 
 ## 🛠️ Tech Stack
 
@@ -28,7 +34,38 @@ The application features a modern dark theme inspired by Spotter.ai with:
 - Axios
 - Lucide React (icons)
 
-## 📦 Installation
+## ☁️ Deployment
+
+### Infrastructure
+
+| Service | Platform | Details |
+|---------|----------|---------|
+| **Frontend** | Vercel | Static site hosting with CDN |
+| **Backend** | GCP Cloud Run | Serverless Django API |
+| **Database** | GCP Cloud SQL | PostgreSQL 15 |
+
+### Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_API_URL` | Backend API URL (Cloud Run) |
+
+### Deploy to Vercel
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd frontend
+vercel --prod
+
+# Set environment variable
+vercel env add VITE_API_URL production
+# Enter: https://spotter-api-236488896419.us-central1.run.app
+```
+
+## 📦 Local Installation
 
 ### Prerequisites
 - Node.js 18 or higher
@@ -89,6 +126,7 @@ spotter-frontend/
     ├── main.tsx
     ├── App.tsx
     ├── index.css
+    ├── vite-env.d.ts       # Vite environment types
     ├── types/
     │   └── index.ts
     └── components/
@@ -142,4 +180,4 @@ MIT License
 
 ## 🔗 Related
 
-- [Spotter Backend](https://github.com/syedmustafan/spotter-backend) - Django REST API backend
+- [Spotter Backend](https://github.com/syedmustafan/spotter-backend) - Django REST API backend (GCP Cloud Run)
